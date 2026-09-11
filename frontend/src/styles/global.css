@@ -1,0 +1,832 @@
+/* =========================================================
+   POLARIS
+   DEEP OCEAN + POLAR TWILIGHT
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg-deep);
+  color: #FFFFFF;
+
+  font-family: var(--font-main);
+
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   MAIN BACKGROUND
+   ========================================================= */
+
+.app-shell {
+  position: relative;
+
+  min-height: 100vh;
+
+  padding: 18px 22px 30px;
+
+  overflow: hidden;
+
+  color: #FFFFFF;
+
+  background:
+
+    radial-gradient(
+      ellipse at 15% 85%,
+      rgba(217, 154, 181, 0.06),
+      transparent 35%
+    ),
+
+    radial-gradient(
+      ellipse at 85% 20%,
+      rgba(175, 167, 217, 0.07),
+      transparent 38%
+    ),
+
+    radial-gradient(
+      ellipse at 50% 110%,
+      rgba(227, 196, 107, 0.05),
+      transparent 40%
+    ),
+
+    linear-gradient(
+      180deg,
+      #091F35 0%,
+      #0B2944 48%,
+      #05496C 100%
+    );
+}
+
+
+/* =========================================================
+   WATER / SOFT ATMOSPHERE
+   ========================================================= */
+
+.app-shell::before {
+  content: "";
+
+  position: fixed;
+
+  inset: -20%;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  opacity: 0.28;
+
+  background:
+    repeating-radial-gradient(
+      ellipse at 50% 115%,
+
+      transparent 0px,
+
+      transparent 60px,
+
+      rgba(144, 166, 202, 0.045) 66px,
+
+      transparent 74px
+    );
+
+  animation:
+    waterDrift 18s ease-in-out infinite alternate;
+}
+
+
+.app-shell::after {
+  content: "";
+
+  position: fixed;
+
+  left: -15%;
+  right: -15%;
+
+  bottom: -20%;
+
+  height: 60vh;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  background:
+
+    radial-gradient(
+      ellipse at 25% 80%,
+      rgba(217, 154, 181, 0.06),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      ellipse at 70% 75%,
+      rgba(175, 167, 217, 0.06),
+      transparent 32%
+    ),
+
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgba(5, 73, 108, 0.30),
+      transparent 65%
+    );
+
+  filter: blur(28px);
+
+  animation:
+    waterPulse 12s ease-in-out infinite alternate;
+}
+
+
+@keyframes waterDrift {
+  0% {
+    transform:
+      translate(-3%, -1%)
+      rotate(-1deg)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate(1%, 1%)
+      rotate(0.5deg)
+      scale(1.025);
+  }
+
+  100% {
+    transform:
+      translate(3%, 2%)
+      rotate(1deg)
+      scale(1.04);
+  }
+}
+
+
+@keyframes waterPulse {
+  0% {
+    transform:
+      translateX(-3%)
+      scaleY(0.95);
+  }
+
+  100% {
+    transform:
+      translateX(3%)
+      scaleY(1.05);
+  }
+}
+
+
+/* =========================================================
+   CONTENT ABOVE WATER
+   ========================================================= */
+
+.app-shell > * {
+  position: relative;
+
+  z-index: 1;
+}
+
+
+/* =========================================================
+   PANELS
+   ========================================================= */
+
+.panel {
+  position: relative;
+
+  width: 100%;
+
+  padding: 15px 16px;
+
+  color: #FFFFFF !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(22, 48, 80, 0.97),
+      rgba(13, 41, 68, 0.97)
+    ) !important;
+
+  border:
+    1px solid rgba(61, 95, 135, 0.85);
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.22);
+
+  overflow: hidden;
+}
+
+.navigation-alerts {
+  margin-top: 12px;
+}
+
+.navigation-alerts__empty {
+  color: var(--text-muted);
+  font-size: 12px;
+  margin: 0;
+}
+
+.navigation-alerts__list {
+  display: grid;
+  gap: 8px;
+}
+
+.navigation-alert {
+  border-left: 3px solid var(--cyan);
+  background: rgba(255, 255, 255, 0.035);
+  padding: 9px 10px;
+}
+
+.navigation-alert--safe { border-left-color: var(--green); }
+.navigation-alert--caution { border-left-color: var(--orange); }
+.navigation-alert--critical,
+.navigation-alert--infeasible { border-left-color: var(--red); }
+
+.navigation-alert__heading {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.navigation-alert__severity {
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.navigation-alert strong {
+  font-size: 12px;
+}
+
+.navigation-alert p {
+  color: var(--text-soft);
+  font-size: 11px;
+  line-height: 1.4;
+  margin: 5px 0 7px;
+}
+
+.navigation-alert__values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+}
+
+.navigation-alert__value {
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   SUBTLE PANEL REFLECTION
+   ========================================================= */
+
+.panel::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: -120%;
+
+  width: 65%;
+
+  height: 100%;
+
+  pointer-events: none;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(201, 217, 232, 0.035),
+      transparent
+    );
+
+  transform: skewX(-18deg);
+
+  animation:
+    panelReflection 12s ease-in-out infinite;
+}
+
+
+@keyframes panelReflection {
+  0% {
+    left: -120%;
+  }
+
+  45%,
+  100% {
+    left: 140%;
+  }
+}
+
+
+.panel:hover {
+  border-color:
+    rgba(144, 166, 202, 0.65);
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.28);
+}
+
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+.panel h1,
+.panel h2,
+.panel h3,
+.panel h4,
+.panel h5,
+.panel h6 {
+  margin-top: 0;
+
+  margin-bottom: 14px;
+
+  color: #FFFFFF !important;
+
+  font-family: var(--font-main);
+
+  font-weight: 700;
+
+  letter-spacing: 0.3px;
+}
+
+
+.panel h4 {
+  font-size: 13px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.7px;
+}
+
+
+/* =========================================================
+   ROWS
+   ========================================================= */
+
+.row {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  min-height: 32px;
+
+  padding: 6px 0;
+
+  border-bottom:
+    1px solid rgba(184, 200, 223, 0.10);
+}
+
+
+.row:last-child {
+  border-bottom: none;
+}
+
+
+.row > span {
+  flex: 1;
+
+  min-width: 0;
+
+  color: #D3DFEA !important;
+
+  font-size: 11px;
+
+  font-weight: 500;
+
+  line-height: 1.4;
+}
+
+
+.row > b {
+  flex-shrink: 0;
+
+  color: #FFFFFF !important;
+
+  font-family: var(--font-mono);
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  max-width: 62%;
+
+  text-align: right;
+
+  white-space: normal;
+
+  overflow-wrap: anywhere;
+}
+
+.data-note {
+  color: var(--muted2);
+  font-size: 10px;
+  line-height: 1.4;
+  margin: 9px 0 0;
+}
+
+
+/* =========================================================
+   NORMAL TEXT
+   ========================================================= */
+
+.panel p {
+  color: #D3DFEA !important;
+}
+
+
+.panel label {
+  color: #D3DFEA !important;
+}
+
+
+.panel strong,
+.panel b {
+  color: #FFFFFF !important;
+}
+
+
+/* =========================================================
+   METRICS
+   ========================================================= */
+
+.value,
+.metric,
+.metric-value,
+.stat-value,
+.number {
+  color: #FFFFFF !important;
+
+  font-family: var(--font-mono);
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   MUTED
+   ========================================================= */
+
+.muted,
+.secondary {
+  color: #7890A5 !important;
+}
+
+
+/* =========================================================
+   SOURCE TAG
+   ========================================================= */
+
+.source-tag {
+  display: inline-flex;
+
+  align-items: center;
+
+  margin-left: 7px;
+
+  padding: 2px 6px;
+
+  color: #C8C1E8 !important;
+
+  background:
+    rgba(175, 167, 217, 0.08);
+
+  border:
+    1px solid rgba(175, 167, 217, 0.28);
+
+  border-radius: 4px;
+
+  font-family: var(--font-mono);
+
+  font-size: 8px;
+
+  letter-spacing: 0.5px;
+
+  vertical-align: middle;
+}
+
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 5px 9px;
+
+  border-radius: 6px;
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.4px;
+}
+
+
+.badge.safe {
+  color: #6AA88F !important;
+
+  background:
+    rgba(106, 168, 143, 0.10) !important;
+
+  border:
+    1px solid rgba(106, 168, 143, 0.40);
+}
+
+
+.badge.caution {
+  color: #E3C46B !important;
+
+  background:
+    rgba(227, 196, 107, 0.10) !important;
+
+  border:
+    1px solid rgba(227, 196, 107, 0.40);
+}
+
+
+.badge.high-risk {
+  color: #D99AB5 !important;
+
+  background:
+    rgba(217, 154, 181, 0.10) !important;
+
+  border:
+    1px solid rgba(217, 154, 181, 0.40);
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.topbar {
+  position: relative;
+
+  z-index: 5;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 18px;
+
+  padding-bottom: 13px;
+
+  border-bottom:
+    1px solid rgba(61, 95, 135, 0.55);
+}
+
+
+.brand-text b {
+  color: #FFFFFF !important;
+}
+
+
+.brand-text span {
+  color: #B8C8DF !important;
+}
+
+
+.nav {
+  background:
+    rgba(22, 48, 80, 0.92) !important;
+
+  border:
+    1px solid #3D5F87 !important;
+}
+
+
+.nav a {
+  color: #B8C8DF !important;
+}
+
+
+.nav a.active {
+  color: #FFFFFF !important;
+
+  background:
+    #07779A !important;
+}
+
+
+.nav a:hover {
+  color: #FFFFFF !important;
+
+  background:
+    #0793BA !important;
+}
+
+
+.clock {
+  color: #B8C8DF !important;
+}
+
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+button {
+  font-family: var(--font-main);
+
+  color: #FFFFFF !important;
+
+  cursor: pointer;
+}
+
+
+.btn-main {
+  color: #FFFFFF !important;
+
+  padding: 9px 15px;
+
+  border:
+    1px solid #07779A;
+
+  border-radius: 8px;
+
+  background:
+    #07779A;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.3px;
+
+  box-shadow: none;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.btn-main:hover {
+  background:
+    #0793BA;
+
+  transform:
+    translateY(-1px);
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+input,
+select,
+textarea {
+  color: #FFFFFF !important;
+
+  background:
+    #091F35 !important;
+
+  border:
+    1px solid #3D5F87 !important;
+
+  border-radius: 7px;
+}
+
+
+input::placeholder,
+textarea::placeholder {
+  color: #7890A5 !important;
+}
+
+
+select option {
+  background:
+    #163050;
+
+  color:
+    #FFFFFF;
+}
+
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+a {
+  color:
+    #D3DFEA !important;
+}
+
+
+a:hover {
+  color:
+    #C8C1E8 !important;
+}
+
+
+/* =========================================================
+   CHECKBOX
+   ========================================================= */
+
+input[type="checkbox"] {
+  accent-color:
+    #07779A;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+
+::-webkit-scrollbar-track {
+  background:
+    #091F35;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background:
+    #3D5F87;
+
+  border-radius:
+    10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background:
+    #5D749E;
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background:
+    rgba(175, 167, 217, 0.25);
+
+  color:
+    #FFFFFF;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .app-shell {
+    padding: 12px;
+  }
+
+  .topbar {
+    flex-wrap: wrap;
+  }
+
+  .row {
+    gap: 10px;
+  }
+
+}

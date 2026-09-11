@@ -1,0 +1,775 @@
+/* =========================================================
+   POLARIS — SPLASH SCREEN
+   Antarctic / Aurora / Scientific
+   ========================================================= */
+
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255, 255, 255, 0.08),
+      transparent 32%
+    ),
+    linear-gradient(
+      135deg,
+      #061827 0%,
+      #09263c 35%,
+      #073847 65%,
+      #061a2c 100%
+    );
+
+  color: white;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* =========================================================
+   COLOURED ATMOSPHERIC LIGHT
+   ========================================================= */
+
+.splash-aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(85px);
+  pointer-events: none;
+  animation: auroraFloat 7s ease-in-out infinite alternate;
+}
+
+.splash-pink {
+  width: 520px;
+  height: 520px;
+  left: -170px;
+  top: 5%;
+
+  background: rgba(225, 120, 164, 0.48);
+}
+
+.splash-yellow {
+  width: 460px;
+  height: 460px;
+  right: -100px;
+  top: -80px;
+
+  background: rgba(238, 205, 92, 0.42);
+
+  animation-delay: -2s;
+}
+
+.splash-purple {
+  width: 560px;
+  height: 560px;
+  right: -190px;
+  top: 32%;
+
+  background: rgba(137, 104, 191, 0.46);
+
+  animation-delay: -4s;
+}
+
+.splash-green {
+  width: 480px;
+  height: 480px;
+  left: 5%;
+  bottom: -230px;
+
+  background: rgba(63, 158, 132, 0.38);
+
+  animation-delay: -1s;
+}
+
+.splash-white {
+  width: 500px;
+  height: 500px;
+  left: 35%;
+  top: 15%;
+
+  background: rgba(255, 255, 255, 0.10);
+  filter: blur(120px);
+
+  animation-delay: -3s;
+}
+
+@keyframes auroraFloat {
+  from {
+    transform: translate3d(-15px, -10px, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(20px, 15px, 0) scale(1.08);
+  }
+}
+
+/* =========================================================
+   WATER LINES
+   ========================================================= */
+
+.water-lines {
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+
+  background:
+    repeating-linear-gradient(
+      168deg,
+      transparent 0px,
+      transparent 22px,
+      rgba(190, 230, 235, 0.08) 23px,
+      transparent 25px
+    );
+
+  animation: waterMove 12s linear infinite;
+}
+
+@keyframes waterMove {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(45px);
+  }
+}
+
+/* Soft central ice glow */
+
+.ice-glow {
+  position: absolute;
+  width: 900px;
+  height: 500px;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background: radial-gradient(
+    ellipse,
+    rgba(210, 240, 245, 0.09),
+    transparent 68%
+  );
+
+  filter: blur(20px);
+}
+
+/* =========================================================
+   PARTICLES
+   ========================================================= */
+
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particles span {
+  position: absolute;
+
+  color: rgba(255, 255, 255, 0.60);
+  font-size: 13px;
+
+  animation: particleFloat 5s ease-in-out infinite;
+}
+
+.particles span:nth-child(1) {
+  left: 14%;
+  top: 25%;
+}
+
+.particles span:nth-child(2) {
+  left: 25%;
+  top: 65%;
+  animation-delay: -1s;
+}
+
+.particles span:nth-child(3) {
+  left: 82%;
+  top: 25%;
+  font-size: 17px;
+  animation-delay: -2s;
+}
+
+.particles span:nth-child(4) {
+  left: 76%;
+  top: 68%;
+  animation-delay: -3s;
+}
+
+.particles span:nth-child(5) {
+  left: 18%;
+  top: 76%;
+  animation-delay: -2.5s;
+}
+
+.particles span:nth-child(6) {
+  left: 90%;
+  top: 50%;
+  animation-delay: -1.5s;
+}
+
+.particles span:nth-child(7) {
+  left: 70%;
+  top: 18%;
+  animation-delay: -4s;
+}
+
+.particles span:nth-child(8) {
+  left: 34%;
+  top: 18%;
+  animation-delay: -3.5s;
+}
+
+@keyframes particleFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+
+  50% {
+    transform: translateY(-14px);
+    opacity: 0.9;
+  }
+}
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.splash-content {
+  position: relative;
+  z-index: 10;
+
+  width: min(900px, 90vw);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+/* =========================================================
+   CUTE POLAR OBJECT
+   ========================================================= */
+
+.polar-object {
+  position: relative;
+
+  width: 115px;
+  height: 88px;
+
+  margin-bottom: 14px;
+
+  animation: littleFloat 3.5s ease-in-out infinite;
+}
+
+@keyframes littleFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+/* Penguin */
+
+.penguin {
+  position: absolute;
+
+  left: 18px;
+  bottom: 3px;
+
+  width: 57px;
+  height: 76px;
+}
+
+.penguin-head {
+  position: absolute;
+
+  left: 9px;
+  top: 0;
+
+  width: 40px;
+  height: 39px;
+
+  border-radius: 50% 50% 45% 45%;
+
+  background: #102d43;
+  border: 2px solid rgba(220, 240, 242, 0.65);
+}
+
+.eye {
+  position: absolute;
+
+  top: 14px;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: white;
+}
+
+.left-eye {
+  left: 11px;
+}
+
+.right-eye {
+  right: 11px;
+}
+
+/* tiny beak */
+
+.penguin-head::after {
+  content: "";
+
+  position: absolute;
+
+  left: 17px;
+  top: 21px;
+
+  width: 0;
+  height: 0;
+
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 7px solid #e3c46b;
+}
+
+/* Penguin body */
+
+.penguin-body {
+  position: absolute;
+
+  left: 2px;
+  bottom: 3px;
+
+  width: 53px;
+  height: 57px;
+
+  border-radius: 48% 48% 42% 42%;
+
+  background: #0c2a40;
+  border: 2px solid rgba(220, 240, 242, 0.55);
+}
+
+.penguin-belly {
+  position: absolute;
+
+  left: 11px;
+  top: 13px;
+
+  width: 27px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  background: rgba(246, 250, 247, 0.92);
+}
+
+/* Wings */
+
+.wing {
+  position: absolute;
+
+  top: 16px;
+
+  width: 12px;
+  height: 31px;
+
+  border-radius: 60%;
+
+  background: #173b52;
+}
+
+.left-wing {
+  left: -8px;
+  transform: rotate(18deg);
+}
+
+.right-wing {
+  right: -8px;
+  transform: rotate(-18deg);
+}
+
+/* Feet */
+
+.penguin-feet {
+  position: absolute;
+
+  bottom: -2px;
+  left: 11px;
+
+  display: flex;
+  gap: 17px;
+}
+
+.penguin-feet span {
+  width: 15px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #e3c46b;
+}
+
+/* Iceberg */
+
+.tiny-iceberg {
+  position: absolute;
+
+  right: 5px;
+  bottom: 2px;
+
+  width: 53px;
+  height: 65px;
+}
+
+.ice-top {
+  position: absolute;
+
+  left: 8px;
+  top: 4px;
+
+  width: 35px;
+  height: 20px;
+
+  background: rgba(242, 250, 252, 0.95);
+
+  clip-path: polygon(
+    0 70%,
+    22% 28%,
+    39% 48%,
+    55% 0,
+    75% 48%,
+    100% 67%,
+    85% 100%,
+    12% 100%
+  );
+}
+
+.ice-body {
+  position: absolute;
+
+  left: 3px;
+  top: 19px;
+
+  width: 47px;
+  height: 39px;
+
+  background: rgba(144, 190, 207, 0.62);
+
+  clip-path: polygon(
+    12% 0,
+    88% 0,
+    100% 100%,
+    0 100%
+  );
+}
+
+/* =========================================================
+   SYSTEM LABEL
+   ========================================================= */
+
+.system-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 5px;
+
+  color: rgba(230, 241, 244, 0.72);
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3.2px;
+}
+
+.label-line {
+  width: 32px;
+  height: 1px;
+
+  background: rgba(230, 241, 244, 0.45);
+}
+
+/* =========================================================
+   POLARIS LOGO
+   ========================================================= */
+
+.polaris-logo {
+  margin: 0;
+
+  display: flex;
+
+  color: #ffffff;
+
+  font-size: clamp(65px, 11vw, 132px);
+  font-weight: 800;
+
+  line-height: 0.95;
+  letter-spacing: 0.13em;
+
+  text-indent: 0.13em;
+
+  text-shadow:
+    0 0 20px rgba(235, 249, 250, 0.18),
+    0 8px 35px rgba(0, 0, 0, 0.22);
+
+  animation: logoAppear 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.polaris-logo span {
+  display: inline-block;
+
+  opacity: 0;
+
+  animation: letterReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1)
+    forwards;
+}
+
+/* Individual entrance directions */
+
+.polaris-logo span:nth-child(1) {
+  transform: translateX(-100px);
+  animation-delay: 0.1s;
+}
+
+.polaris-logo span:nth-child(2) {
+  transform: translateY(-80px);
+  animation-delay: 0.18s;
+}
+
+.polaris-logo span:nth-child(3) {
+  transform: translateX(-70px);
+  animation-delay: 0.26s;
+}
+
+.polaris-logo span:nth-child(4) {
+  transform: translateY(80px);
+  animation-delay: 0.34s;
+}
+
+.polaris-logo span:nth-child(5) {
+  transform: translateX(70px);
+  animation-delay: 0.42s;
+}
+
+.polaris-logo span:nth-child(6) {
+  transform: translateY(-80px);
+  animation-delay: 0.50s;
+}
+
+.polaris-logo span:nth-child(7) {
+  transform: translateX(100px);
+  animation-delay: 0.58s;
+}
+
+@keyframes letterReveal {
+  to {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes logoAppear {
+  from {
+    filter: blur(5px);
+  }
+
+  to {
+    filter: blur(0);
+  }
+}
+
+/* =========================================================
+   TAGLINE SLIDESHOW
+   ========================================================= */
+
+.tagline-wrapper {
+  position: relative;
+
+  height: 30px;
+
+  margin-top: 25px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.tagline {
+  color: rgba(255, 255, 255, 0.93);
+
+  font-size: clamp(12px, 1.6vw, 17px);
+  font-weight: 500;
+
+  letter-spacing: 4px;
+
+  animation: taglineIn 0.65s ease both;
+}
+
+@keyframes taglineIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* =========================================================
+   SLIDE INDICATORS
+   ========================================================= */
+
+.slide-indicators {
+  display: flex;
+  gap: 7px;
+
+  margin-top: 14px;
+}
+
+.slide-indicators span {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.28);
+
+  transition:
+    width 0.35s ease,
+    background 0.35s ease;
+}
+
+.slide-indicators span.active {
+  width: 22px;
+
+  border-radius: 5px;
+
+  background: #e3c46b;
+}
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.splash-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 34px;
+
+  color: rgba(215, 231, 236, 0.58);
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 8px;
+
+  letter-spacing: 2px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #6aa88f;
+
+  box-shadow: 0 0 12px rgba(106, 168, 143, 0.7);
+
+  animation: statusPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   BOTTOM LABEL
+   ========================================================= */
+
+.splash-bottom {
+  position: absolute;
+
+  bottom: 24px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  color: rgba(215, 231, 236, 0.36);
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 7px;
+
+  letter-spacing: 3px;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .system-label {
+    font-size: 7px;
+    letter-spacing: 2px;
+  }
+
+  .label-line {
+    width: 18px;
+  }
+
+  .polar-object {
+    transform: scale(0.85);
+    margin-bottom: 5px;
+  }
+
+  .polaris-logo {
+    font-size: 55px;
+    letter-spacing: 0.08em;
+    text-indent: 0.08em;
+  }
+
+  .tagline {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+  }
+
+  .splash-status {
+    margin-top: 25px;
+    font-size: 7px;
+  }
+
+  .splash-bottom {
+    display: none;
+  }
+}

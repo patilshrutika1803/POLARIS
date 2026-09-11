@@ -1,0 +1,80 @@
+:root {
+  /* ================================
+     DEEP ANTARCTIC OCEAN
+     ================================ */
+
+  --bg-deep: #091F35;
+  --bg-mid: #0D2944;
+  --bg-light: #163050;
+
+  --panel: #163050;
+  --panel-secondary: #033A49;
+
+  --border: #3D5F87;
+
+
+  /* ================================
+     ICE / OCEAN
+     ================================ */
+
+  --ice: #C9D9E8;
+  --ice-bright: #F4F8FC;
+
+  --cyan: #6FB8C8;
+  --cyan-dim: #397F91;
+
+
+  /* ================================
+     POLAR TWILIGHT ACCENTS
+     ================================ */
+
+  --pink: #D99AB5;
+  --pink-soft: #E8B7CB;
+
+  --lavender: #AFA7D9;
+  --lavender-soft: #C8C1E8;
+
+  --purple: #8174B8;
+  --purple-soft: #9A8DCA;
+
+  --yellow: #E3C46B;
+  --yellow-soft: #F0D98A;
+
+
+  /* ================================
+     STATUS
+     ================================ */
+
+  --green: #6AA88F;
+  --orange: #D3A65B;
+  --red: #C97865;
+
+
+  /* ================================
+     TEXT
+     ================================ */
+
+  --text: #FFFFFF;
+  --text-primary: #FFFFFF;
+
+  --text-soft: #D3DFEA;
+  --text-secondary: #B8C8DF;
+
+  --text-muted: #7890A5;
+
+
+  /* ================================
+     FONTS
+     ================================ */
+
+  --font-main:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+
+  --font-mono:
+    "JetBrains Mono",
+    monospace;
+}
